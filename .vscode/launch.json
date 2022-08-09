@@ -12,8 +12,7 @@
             "log": true,
             "externalConsole": false,
             "pathMappings": {
-                "/var/www/core": "${workspaceRoot}/core",
-                "/var/www/api": "${workspaceRoot}/api"
+                "/var/www/api": "${workspaceRoot}"
             },
             "ignore": ["vendor/**/*.php"]
         },
@@ -24,9 +23,6 @@
             "port": 9003,
             "log": true,
             "externalConsole": false,
-            // "pathMappings": {
-            //   "/var/www/api": "${workspaceRoot}/api",
-            // },
             "ignore": ["vendor/**/*.php"]
         }
     ]
