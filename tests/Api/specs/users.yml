@@ -1,0 +1,26 @@
+api_controller_actions:
+  ___meta:
+    users:
+      - &test_user_1 11
+  actions:
+    -
+      test_id: users/show/0
+      method: GET
+      uri: /user
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        status_code: 401
+    -
+      test_id: users/show/1
+      method: GET
+      uri: /user
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      users:
+      - *test_user_1
+      checks:
+        json_decoded:
+          email: test@example.com

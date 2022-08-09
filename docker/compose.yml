@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  lask_db:
+    image: lask/db
+    build: db
+    container_name: lask_db
+    volumes:
+    - "../database/fixtures:/var/fixtures:rw"
+    ports:
+    - "3306:3306"
+    environment:
+    - TZ=Australia/Melbourne
+    # remove me once we do not have issue with group by sql_mode issue
+    # "this is incompatible with sql_mode=only_full_group_by"
+    command: --sql-mode=""
+    networks:
+      - lask_net
+  lask_api:
+    image: lask/api
+    build: api
+    container_name: lask_api
+    volumes:
+    # - "../:/var/www/core:rw"
+    - "../../api:/var/www/api:rw"
+    # - "../../static/build/:/var/www/core/assets:rw"
+    # - "../upload/:/var/www/core/assets/upload:rw"
+    # - "../../wp/wp-content/uploads/:/var/www/core/vendor/firmchecker/wp/wp-content/uploads:rw"
+    # - "../../wp/wp-content/themes:/var/www/core/vendor/firmchecker/wp/wp-content/themes:rw"
+    # - "../../wp/wp-content/plugins/elementor-firmchecker:/var/www/core/vendor/firmchecker/wp/wp-content/plugins/elementor-firmchecker:rw"
+    links:
+    - lask_db:devdb
+    extra_hosts:
+    # - "local.firmchecker.com.au:127.0.0.1"
+    - "local.api.firmchecker.com:127.0.0.1"
+    ports:
+    - "80:80"
+    - "443:443"
+    networks:
+      - lask_net
+
+networks:
+  lask_net:

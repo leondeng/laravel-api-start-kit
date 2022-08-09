@@ -1,0 +1,6 @@
+api_controller_actions:
+  base_url: https://local.api.firmchecker.com/api
+  logging:
+    file: php://stderr
+    verbosity: 0
+    query: false

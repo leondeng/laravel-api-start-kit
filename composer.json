@@ -1,0 +1,94 @@
+{
+    "name": "fan/laravel-api-start-kit",
+    "description": "Laravel based API development start kit",
+    "type": "project",
+    "require": {
+        "php": "^8.0.2",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.19",
+        "laravel/passport": "^10.4",
+        "laravel/tinker": "^2.7"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "firmchecker/devtools": "^1.0",
+        "firmchecker/qalib": "dev-master",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0"
+    },
+    "repositories": [
+        {
+            "url": "https://bitbucket.org/firmchecker/devtools.git",
+            "type": "git"
+        },
+        {
+            "url": "https://bitbucket.org/firmchecker/qalib.git",
+            "type": "git"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Api\\": "app/Api/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fan Deng",
+            "email": "leondeng@gmail.com"
+        }
+    ],
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "containers:build": [
+            "docker-compose -f docker/compose.yml build"
+        ],
+        "containers:up": [
+            "docker-compose -f docker/compose.yml up -d"
+        ],
+        "containers:stop": [
+            "docker-compose -f docker/compose.yml stop"
+        ],
+        "test": "cp .test.env .env; php vendor/bin/phpunit",
+        "test:api": [
+            "cp .test.env .env; php vendor/bin/phpunit tests/Api"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
