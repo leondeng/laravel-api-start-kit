@@ -2,13 +2,13 @@
 
 namespace Tests\Api;
 
-use Firmchecker\Qalib\Laravel\ApiTestCase;
+use Fan\Laty\Laravel\ApiTestCase;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 use Laravel\Passport\Passport;
 use App\Models\User;
-use App\Services\RecaptchaService;
+// use App\Services\RecaptchaService;
 
 class WebServiceTest extends ApiTestCase
 {

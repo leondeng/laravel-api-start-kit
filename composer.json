@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "php": "^8.0.2",
+        "fan/laty": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/passport": "^10.4",
@@ -11,8 +12,6 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "firmchecker/devtools": "^1.0",
-        "firmchecker/qalib": "dev-master",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",

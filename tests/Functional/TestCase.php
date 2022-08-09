@@ -2,7 +2,7 @@
 
 namespace Tests\Functional;
 
-use Firmchecker\Qalib\Laravel\FunctionalTestCase;
+use Fan\Laty\Laravel\FunctionalTestCase;
 use Illuminate\Contracts\Console\Kernel;
 
 abstract class TestCase extends FunctionalTestCase
