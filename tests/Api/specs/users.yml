@@ -24,3 +24,5 @@ api_controller_actions:
       checks:
         json_decoded:
           email: test@example.com
+        no_json_decoded:
+          id: ~
