@@ -1,0 +1,96 @@
+api_controller_actions:
+  ___meta:
+    users:
+      - &test_user_1 11
+    checks:
+      - &timestamp_pattern /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/
+  actions:
+    -
+      test_id: comments/show/0
+      method: GET
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        status_code: 401
+    -
+      test_id: comments/show/1
+      method: GET
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      users:
+      - *test_user_1
+      checks:
+        no_json_decoded:
+          id: ~
+    -
+      test_id: comments/list/0
+      method: GET
+      uri: /users/11/comments
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      users:
+      - *test_user_1
+      checks:
+        json_decoded:
+          0.created_at: *timestamp_pattern
+        no_json_decoded:
+          3.content: ~
+    -
+      test_id: comments/update/0
+      method: PATCH
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      users:
+      - *test_user_1
+      checks:
+        status_code: 422
+        json:
+        - content: ["The content field is required."]
+    -
+      test_id: comments/update/1
+      method: PATCH
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      users:
+      - 10 #not the owner
+      content:
+        content: updated content
+      checks:
+        status_code: 403
+    -
+      test_id: comments/update/2
+      method: PATCH
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      users:
+      - *test_user_1
+      content:
+        content: updated content
+      checks:
+        json_decoded:
+          content: updated content
+    -
+      test_id: comments/delete/0
+      method: DELETE
+      uri: /users/11/comments/1
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      users:
+      - *test_user_1
+      checks:
+        status_code: 204
+        content_type: ~

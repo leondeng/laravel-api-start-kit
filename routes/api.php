@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Api\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:api', 'ajax_only'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
+    });
+
+    Route::prefix('/users/{user}')->group(function () {
+        Route::resource('comments', CommentController::class);
     });
 });
