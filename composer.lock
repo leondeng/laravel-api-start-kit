@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e2dd38195a4cad1d1290e0801f4576c",
+    "content-hash": "adf5ea6b81338e7b7001fcdc70f7ac16",
     "packages": [
         {
             "name": "brick/math",
@@ -6454,16 +6454,16 @@
         },
         {
             "name": "fan/laty",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leondeng/laty.git",
-                "reference": "d3f826455a382505349c4b734404c76a47eed972"
+                "reference": "982f94a8ae783b0c00e791bbf68e747ac35268bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leondeng/laty/zipball/d3f826455a382505349c4b734404c76a47eed972",
-                "reference": "d3f826455a382505349c4b734404c76a47eed972",
+                "url": "https://api.github.com/repos/leondeng/laty/zipball/982f94a8ae783b0c00e791bbf68e747ac35268bf",
+                "reference": "982f94a8ae783b0c00e791bbf68e747ac35268bf",
                 "shasum": ""
             },
             "require": {
@@ -6493,9 +6493,9 @@
             "description": "Laravel Api Test in YAML",
             "support": {
                 "issues": "https://github.com/leondeng/laty/issues",
-                "source": "https://github.com/leondeng/laty/tree/v1.0.0"
+                "source": "https://github.com/leondeng/laty/tree/v1.0.1"
             },
-            "time": "2022-08-09T05:23:47+00:00"
+            "time": "2022-08-15T03:41:48+00:00"
         },
         {
             "name": "filp/whoops",
