@@ -4,7 +4,6 @@
     "type": "project",
     "require": {
         "php": "^8.0.2",
-        "fan/laty": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/passport": "^10.4",
@@ -12,21 +11,12 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "fan/laty": "^1.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
-    "repositories": [
-        {
-            "url": "https://bitbucket.org/firmchecker/devtools.git",
-            "type": "git"
-        },
-        {
-            "url": "https://bitbucket.org/firmchecker/qalib.git",
-            "type": "git"
-        }
-    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {

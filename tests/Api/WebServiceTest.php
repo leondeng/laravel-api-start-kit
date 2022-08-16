@@ -44,7 +44,7 @@ class WebServiceTest extends ApiTestCase
         return 'api_controller_actions';
     }
 
-    protected function authencateUser($user_name, $server)
+    protected function authenticateUser($user_name, $server)
     {
         $user = $this->getUser($user_name);
 
@@ -61,7 +61,7 @@ class WebServiceTest extends ApiTestCase
         return User::find($user_name);
     }
 
-    protected function getAuthencatedUser()
+    protected function getAuthenticatedUser()
     {
         return Auth::user();
     }
