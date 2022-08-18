@@ -152,6 +152,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'signup' => [
+            'EMAIL_ALREADY_REGISTERED' => 'Your email address has already been registered.',
+            'EMAIL_INVALID' => 'We require a valid email address. You will need to verify this email to complete your setup.',
+        ],
     ],
 
     /*

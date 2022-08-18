@@ -2,7 +2,6 @@
 
 namespace Api\Controllers;
 
-use Illuminate\Routing\Controller;
 use App\Models\User;
 use App\Models\Comment;
 use Api\Requests\UpdateCommentRequest;

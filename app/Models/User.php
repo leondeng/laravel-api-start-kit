@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function signup()
+    {
+        return $this->hasOne(Signup::class);
+    }
 }

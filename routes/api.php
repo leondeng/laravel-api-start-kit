@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Api\Controllers\CommentController;
+use Api\Controllers\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,14 @@ Route::middleware(['auth:api', 'ajax_only'])->group(function () {
 
     Route::prefix('/users/{user}')->group(function () {
         Route::resource('comments', CommentController::class);
+    });
+});
+
+// protected apis
+Route::middleware('ajax_only')->group(function () {
+    // signup
+    Route::prefix('/signup')->group(function () {
+        Route::get('/check_email/{email}', [SignupController::class, 'checkEmail']);
+        Route::post('', [SignupController::class, 'store']);
     });
 });

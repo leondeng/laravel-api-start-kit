@@ -1,0 +1,119 @@
+api_controller_actions:
+  actions:
+    -
+      test_id: signup/check_email/0
+      method: GET
+      uri: /signup/check_email/invalid
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        status_code: 422
+        json_decoded:
+          message: "The email must be a valid email address."
+    -
+      test_id: signup/check_email/1
+      method: GET
+      uri: /signup/check_email/test%40example.com
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        status_code: 422
+        json_decoded:
+          message: Your email address has already been registered.
+    -
+      test_id: signup/check_email/2
+      method: GET
+      uri: /signup/check_email/whatsoever%40ggmail.com
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        status_code: 422
+        json_decoded:
+          message: We require a valid email address. You will need to verify this email to complete your setup.
+    -
+      test_id: signup/check_email/3
+      method: GET
+      uri: /signup/check_email/valid%40company.com
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+      checks:
+        json_decoded:
+          status: true
+    -
+      test_id: signup/create/0
+      method: POST
+      uri: /signup
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      checks:
+        status_code: 422
+        json:
+        -
+          email: ["The email field is required."]
+        -
+          first_name: ["The first name field is required."]
+        -
+          last_name: ["The last name field is required."]
+    -
+      test_id: signup/create/1
+      method: POST
+      uri: /signup
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      content:
+        email: signup@company.com
+        first_name: First Name
+        last_name: Last Name
+      checks:
+        json_decoded:
+          data.email: signup@company.com
+        jobs:
+        - App\Jobs\SendEmail
+    -
+      test_id: signup/create/2
+      method: POST
+      uri: /signup
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      content:
+        email: signup@example.com
+        first_name: First Name
+        last_name: Last Name
+
+      checks:
+        status_code: 422
+        json:
+        -
+          email: ["We require a valid email address. You will need to verify this email to complete your setup."]
+    -
+      test_id: signup/create/3
+      method: POST
+      uri: /signup
+      server:
+        Accept: application/json
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/json
+      content:
+        email: signup@company.com
+        first_name: First Name
+        last_name: Last Name
+        web_site: http://www.company.com
+      checks:
+        json_decoded:
+          data.first_name: First Name
+          data.email: signup@company.com
+          data.web_site: http://www.company.com
+        jobs:
+        - App\Jobs\CheckSignupWebsite
+        - App\Jobs\SendEmail
+
