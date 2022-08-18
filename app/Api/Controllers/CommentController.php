@@ -6,12 +6,14 @@ use Illuminate\Routing\Controller;
 use App\Models\User;
 use App\Models\Comment;
 use Api\Requests\UpdateCommentRequest;
+use App\Services\CommentService;
 
 class CommentController extends Controller
 {
-    public function show(User $user, Comment $comment)
+    public function show(User $user, Comment $comment, CommentService $commentService)
     {
-        return $comment;
+        // return $comment;
+        return $commentService->find($comment->id);
     }
 
     public function update(UpdateCommentRequest $request, User $user, Comment $comment)
